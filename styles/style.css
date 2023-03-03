@@ -1,0 +1,561 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: GilroyRegular;
+    src: url("../fonts/Gilroy-Regular.ttf");
+}
+
+@font-face {
+    font-family: GilroyMedium;
+    src: url("../fonts/Gilroy-Medium.ttf");
+}
+
+@font-face {
+    font-family: GilroyBold;
+    src: url("../fonts/Gilroy-Bold.ttf");
+}
+
+@font-face {
+    font-family: GilroyExtraBold;
+    src: url("../fonts/Gilroy-Extrabold.ttf");
+}
+
+@font-face {
+    font-family: TavolgaFree;
+    src: url("../fonts/Tavolga-Free.ttf");
+}
+
+body {
+    font-family: GilroyRegular, sans-serif;
+}
+
+.background-pink {
+    background-color: rgb(235, 168, 177);
+    color: #fff;
+}
+
+.background-light-pink {
+    background: rgb(255, 239, 239);
+    color: rgb(51, 25, 7);
+}
+
+/* HEADER STYLES START */
+
+.header {
+    padding: 36px 0; /* у header нет четкой нижней границы, поэтому я просто сделала одинаковые отступы сверху и снизу */
+}
+
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu__list {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 313px;
+}
+
+.menu__item {
+    padding-bottom: 3px;
+    border-bottom: 2px solid transparent;
+    transition: .5s;
+}
+
+.menu__item:hover {
+    border-bottom: 2px solid rgb(130, 19, 40);
+}
+
+.menu__link {
+    text-decoration: none;
+    font-size: 14px;
+    font-family: GilroyMedum, sans-serif;
+    color: rgb(119, 11, 29);
+}
+
+.phone {
+    font-size: 16px;
+    font-family: GilroyBold, sans-serif;
+}
+
+
+
+/* HEADER STYLES END */
+
+
+/* MAIN SECTION STYLES START */
+
+.main {
+    padding: 115px 0 108px;
+}
+
+.main__container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.main__info {
+    max-width: 580px;
+    margin-right: 12px;
+}
+
+.main__title {
+    font-size: 55px;
+    font-family: TavolgaFree, sans-serif;
+}
+
+.main__description {
+    margin: 60px 0 80px;
+    font-size: 18px;
+    font-family: TavolgaFree, sans-serif;
+    color: rgb(255, 255, 255);
+    line-height: 1.389;
+    max-width: 349px;
+}
+
+.main__action {
+    margin-bottom: 37px; /* 145px(от кнопки до конца секции) - 108px(от картинки до конца секции). добавила этот отступ снизу, чтобы выровнять блоки .main__info и .main__image по нижнему краю */
+}
+
+.main__button {
+    font-size: 18px;
+    width: 240px;
+    height: 60px;
+    border-radius: 30px;
+    padding: 19px; /* в макете 22px и 21px, но при этих значениях текст не влазит и размещается не по центру кнопки по вертикали. текстовый слой в макете имеет высоту 20.03px, а высота кнопки 60px, т.к. отступы должны быть не больше 20px */
+}
+
+.button {
+    background-image: -moz-linear-gradient(90deg, rgb(113, 8, 30) 0%, rgb(215, 72, 92) 100%);
+    background-image: -webkit-linear-gradient(90deg, rgb(113, 8, 30) 0%, rgb(215, 72, 92) 100%);
+    background-image: -ms-linear-gradient(90deg, rgb(113, 8, 30) 0%, rgb(215, 72, 92) 100%);
+    font-family: GilroyBold, sans-serif;
+    color: rgb(255, 255, 255);
+    outline: none;
+    border: 0;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: .5s;
+}
+
+.button:hover {
+    box-shadow: 0 5px 9px 1px rgba(130, 19, 40, 0.5);
+}
+
+.main__image {
+    position: relative;
+    z-index: 0; /* задала вручную, иначе псевдоэлемент не видно. хотя вроде по дефолту z-index: auto и есть 0 */
+}
+
+.main__image::before, .main__image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 8.223%; /* т.к. картинка не квадратная, то не получится задать просто width: 100%; height: 100%; я задала отступы по ((529px - 422px) / 2) / 529px * 100%, чтобы при разных экранах псевдоэлемент оставался квадратным */
+    bottom: 0;
+    right: 8.223%;
+    border-radius: 50%;
+    box-sizing: border-box;
+    z-index: -1;
+    border: 1px solid rgb(119, 11, 29);
+    animation: pulse 3s infinite ease;
+}
+
+.main__image::after {
+    animation-delay: .6s;
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(0.7);
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(1.6);
+        opacity: 0;
+    }
+}
+
+/* SECTION MAIN STYLES END */
+
+
+/* ADVANTAGES SECTION STYLES START */
+
+.advantages {
+    padding: 119px 0 120px;
+}
+
+.advantages__container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(auto-fit, 1fr);
+    gap: 108px 86px;
+    justify-items: center;
+
+    box-sizing: border-box;
+}
+
+.advantages__info {
+    grid-column: 1 / 3;
+}
+
+.advantages__image {
+    grid-column: 3 / 5;
+    max-width: 520px;
+}
+
+.advantage {
+    /*max-width: 220px;*/
+}
+
+.advantage:hover .advantage__number {
+    color: rgb(130, 19, 40);
+    background-color: rgb(235, 168, 177);
+}
+
+.subtitle {
+    font-size: 45px;
+    font-family: TavolgaFree, sans-serif;
+}
+
+.advantages__subtitle {
+    line-height: 1.222;
+    margin-bottom: 60px;
+}
+
+.advantages__description {
+    font-size: 18px;
+    font-family: GilroyRegular, sans-serif;
+    line-height: 1.556;
+    max-width: 397px;
+}
+
+.advantage__number {
+    font-size: 60px;
+    font-family: GilroyExtraBold, sans-serif;
+    line-height: 0.75; /* значение <1, но иначе есть межстрочный интервал, который мешает прибить цифру к нижнему краю. можно было воспользоваться абсолютным позиционированием, но так вроде проще */
+    color: rgb(255, 255, 255);
+    margin-bottom: 13px;
+    width: 70px;
+    height: 70px;
+    background: rgb(130, 19, 40);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    transition: .5s;
+}
+
+/*.advantage__number::before {*/
+/*    content: '';*/
+/*    display: block;*/
+/*    position: absolute;*/
+/*    top: -25px;*/
+/*    left: 0;*/
+/*    width: 70px;*/
+/*    height: 70px;*/
+/*    background-color: rgb(130, 19, 40);*/
+/*    border-radius: 50%;*/
+/*    z-index: -1;*/
+/*}*/
+
+
+.advantage__title {
+    font-size: 20px;
+    font-family: GilroyExtraBold, sans-serif;
+}
+
+.advantage__description {
+    font-size: 15px;
+    font-family: GilroyMedium, sans-serif;
+    line-height: 1.333;
+}
+
+/* ADVANTAGES SECTION STYLES END */
+
+
+/* PRODUCTS SECTION STYLES START */
+
+.products {
+    padding: 120px 0;
+}
+
+.products__subtitle {
+    margin-bottom: 143px;
+}
+
+.products__items {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 29px;
+}
+
+.product {
+    font-size: 15px;
+    font-family: GilroyRegular, sans-serif;
+    border-width: 2px;
+    border-color: rgb(255, 255, 255);
+    border-style: solid;
+    border-radius: 20px;
+    padding: 107px 19px 25px 18px; /* все отступы по макету - 2px толщина бордера */
+    box-sizing: border-box;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr 1fr;
+    grid-template-areas:
+        "title title"
+        "quantity button"
+        "price button";
+    gap: 0 35px;
+    align-items: center;
+}
+
+.product:hover .product__image {
+    transform: scale(1.1);
+}
+
+.products__subtitle {
+    text-align: center;
+}
+
+.product__image {
+    position: absolute;
+    top: -59px; /* в макете 57px до верхнего края бордера, +2px толщина бордера*/
+    width: 100%;
+    text-align: center;
+    transition: .5s ease;
+}
+
+.product__title {
+    font-size: 18px;
+    font-family: TavolgaFree, sans-serif;
+    text-align: center;
+    margin-bottom: 26px;
+    grid-area: title;
+}
+
+.product__quantity {
+    grid-area: quantity;
+}
+
+.product__price {
+    grid-area: price;
+}
+
+.product__action {
+    grid-area: button;
+}
+
+.products__button {
+    font-size: 16px;
+    width: 130px;
+    height: 50px;
+    border-radius: 25px;
+    padding: 15px; /* в макете 19px и 20px, но при этих значениях текст не влазит и размещается не по центру кнопки по вертикали */
+}
+
+/* PRODUCTS SECTION STYLES END */
+
+
+/* ORDER SECTION STYLES START */
+
+.order__container {
+    padding: 98px 0 120px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.order__image {
+    margin-left: 16px;
+}
+
+.order__info {
+    max-width: 406px;
+    margin: 0 auto; /*отступ до картинки 161px, до края контейнера 154px. если выровнять внутри ячейки флекса по центру, будет по 155px. неидеально, зато при адаптиве сработает лучше, чем фиксированый отступ */
+    position: relative;
+}
+
+.order__subtitle {
+    -moz-transform: matrix(1.00011967125209, 0, 0, 1.00072983989549, 0, 0);
+    -webkit-transform: matrix(1.00011967125209, 0, 0, 1.00072983989549, 0, 0);
+    -ms-transform: matrix(1.00011967125209, 0, 0, 1.00072983989549, 0, 0);
+    transform: matrix(1.00011967125209, 0, 0, 1.00072983989549, 0, 0);
+}
+
+.order__description {
+    font-size: 18px;
+    font-family: GilroyRegular, sans-serif;
+    line-height: 1.556;
+    -moz-transform: matrix(1.00011967125209, 0, 0, 1.00072983989549, 0, 0);
+    -webkit-transform: matrix(1.00011967125209, 0, 0, 1.00072983989549, 0, 0);
+    -ms-transform: matrix(1.00011967125209, 0, 0, 1.00072983989549, 0, 0);
+    transform: matrix(1.00011967125209, 0, 0, 1.00072983989549, 0, 0);
+    margin: 41px 0 48px;
+}
+
+.form {
+    font-size: 18px;
+    font-family: GilroyBold, sans-serif;
+    color: rgb(18, 10, 6);
+    -moz-transform: matrix(1.00011967125209, 0, 0, 1.00072983989549, 0, 0);
+    -webkit-transform: matrix(1.00011967125209, 0, 0, 1.00072983989549, 0, 0);
+    -ms-transform: matrix(1.00011967125209, 0, 0, 1.00072983989549, 0, 0);
+    transform: matrix(1.00011967125209, 0, 0, 1.00072983989549, 0, 0);
+    position: relative;
+}
+
+.form__product {
+    margin-bottom: 20px;
+}
+
+.form__input {
+    border-width: 1px;
+    border-color: rgb(130, 19, 40);
+    border-style: solid;
+    border-radius: 30px;
+    width: 293px;
+    height: 59px;
+    padding: 23px 25px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.form__input, .form__input::placeholder {
+    font-size: 15px;
+    font-family: GilroyBold, sans-serif;
+    color: rgb(118, 12, 34);
+    -moz-transform: matrix(1.00011967125209, 0, 0, 1.00072983989549, 0, 0);
+    -webkit-transform: matrix(1.00011967125209, 0, 0, 1.00072983989549, 0, 0);
+    -ms-transform: matrix(1.00011967125209, 0, 0, 1.00072983989549, 0, 0);
+}
+
+.order__input {
+    margin-bottom: 15px;
+}
+
+.form__data {
+    margin: 25px 0 22px; /* 40px(отступ сверху) - 15px(отступ снизу у инпута) */
+}
+
+.form__button {
+    border-radius: 30px;
+    width: 295px;
+    height: 61px; /* это скопированное значение Copy to CSS, в самом макете высота 60.03px */
+    font-size: 18px;
+    -moz-transform: matrix(1.00011967125209, 0, 0, 1.00072983989549, 0, 0);
+    -webkit-transform: matrix(1.00011967125209, 0, 0, 1.00072983989549, 0, 0);
+    -ms-transform: matrix(1.00011967125209, 0, 0, 1.00072983989549, 0, 0);
+    transform: matrix(1.00011967125209, 0, 0, 1.00072983989549, 0, 0);
+    padding: 19px; /* в макете 22px и 21px, но при этих значениях текст не влазит и размещается не по центру кнопки по вертикали. текстовый слой в макете имеет высоту 20.05px, а высота кнопки 61px, т.к. отступы должны быть не больше 20px */
+}
+
+.order__float-image-left {
+    position: absolute;
+    top: 51px;
+    left: -596px;
+    animation: float 2s infinite ease-in;
+}
+
+.order__float-image-right {
+    position: absolute;
+    bottom: 75px;
+    right: 0;
+    animation: float 3s infinite ease-in;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(20px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* ORDER SECTION STYLES END */
+
+
+/* FOOTER STYLES START */
+
+.footer {
+    padding: 73px 0 62px;
+    background-color: rgb(192, 112, 124);
+    color: rgb(255, 255, 255);
+}
+
+.footer__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rights {
+    font-size: 12px;
+    font-family: GilroyRegular, sans-serif;
+    color: rgb(227, 172, 180);
+    -moz-transform: matrix( 1,0,0,0.99837443537405,0,0);
+    -webkit-transform: matrix( 1,0,0,0.99837443537405,0,0);
+    -ms-transform: matrix( 1,0,0,0.99837443537405,0,0);
+    transform: matrix( 1,0,0,0.99837443537405,0,0);
+    margin-top: 19px;
+}
+
+.social {
+    max-width: 121px;
+    text-align: center;
+}
+
+.social__link {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    display: flex; /* если не делать ссылку флексом, то под иконкой появляется отступ, как межстрочный интервал*/
+    justify-content: center;
+}
+
+.social__icon {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+}
+
+.social__path {
+    fill: #ffffff;
+}
+
+.social__description {
+    font-size: 16px;
+    font-family: GilroyBold, sans-serif;
+    -moz-transform: matrix( 1,0,0,0.99837443537405,0,0);
+    -webkit-transform: matrix( 1,0,0,0.99837443537405,0,0);
+    -ms-transform: matrix( 1,0,0,0.99837443537405,0,0);
+    transform: matrix( 1,0,0,0.99837443537405,0,0);
+    margin-top: 12px; /* в макете 15px, но текст выделяется по краю */
+}
+
+.footer__phone {
+    -moz-transform: matrix( 1.001021071495,0,0,1.00245211767213,0,0);
+    -webkit-transform: matrix( 1.001021071495,0,0,1.00245211767213,0,0);
+    -ms-transform: matrix( 1.001021071495,0,0,1.00245211767213,0,0);
+    transform: matrix( 1.001021071495,0,0,1.00245211767213,0,0);
+}
+
+/* FOOTER STYLES END */
